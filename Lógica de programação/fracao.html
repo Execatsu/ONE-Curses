@@ -1,0 +1,62 @@
+<canvas width="800" height="600"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    function fracao(perc, size) {
+
+        // for (let i = 0; i < perc; i++) {
+        //     pincel.fillStyle = "#00aa00";
+        //     pincel.fillRect(tela.width / size * i, tela.height / 2, tela.width / size , 50)
+        // }
+
+        pincel.fillStyle = "#00aa00";
+        pincel.fillRect(0, tela.height / 2, tela.width / size * perc, 50)
+        
+
+        if (size < 0 || perc < 0) {
+            alert("Digite um número positivo");
+            Location.reload();
+        }
+        else if (size <= 20) {
+            for (let i = 0; i <= size; i++) {
+                pincel.stokeStyle = "#777";
+                pincel.strokeRect(tela.width / size * i, tela.height / 2, tela.width / size, 50)
+            }
+        }
+        else if (size <= 100) {
+            for (let i = 0; i <= 20; i++) {
+                pincel.stokeStyle = "#777";
+                pincel.strokeRect(tela.width / 20 * i, tela.height / 2, tela.width / 20, 50)
+            }
+        } else if (size > 100) {
+            pincel.stokeStyle = "#777";
+            pincel.strokeRect(0 , tela.height / 2, tela.width, 50)
+        } else {
+            alert('Erro!!!!!!!')
+        }
+    }
+
+    let divisoes = '';
+    let porcentagem = '';
+
+    function getData() {;
+        while (divisoes === '') {
+            divisoes = prompt("Quantas partes sua fração será dividida?")
+        }
+        while (porcentagem === '') {
+            porcentagem = prompt("Quantas partes será usada?")
+        }
+
+        if (isNaN(divisoes) || isNaN(porcentagem)) {
+            alert("Você digitou dados que não são números, tente novamente")
+            divisoes = '';
+            porcentagem = '';
+            getData();
+        }
+    }
+    getData();
+    fracao(parseInt(porcentagem), parseInt(divisoes));
+
+</script>

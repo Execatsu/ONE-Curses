@@ -1,0 +1,20 @@
+<canvas width="800" height="600"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+
+    function drawCircle(x, y, r, color) {
+        
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x, y, r, 0, 2 * 3.14);
+        pincel.fill();
+    }
+
+    drawCircle(tela.width/2, tela.height/2, 30, '#ff0000');
+    drawCircle(tela.width/2 + 60, tela.height/2, 30, '#ff00ff');
+    drawCircle(tela.width/2 - 60, tela.height/2, 30, '#00ff00');
+    drawCircle(tela.width/2, tela.height/2 + 60, 30, '#ffff00');
+    drawCircle(tela.width/2, tela.height/2 - 60, 30, '#0000ff');
+</script>

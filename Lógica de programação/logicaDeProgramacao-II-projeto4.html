@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 4</title>
+</head>
+<body>
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+
+        let tela = document.querySelector('canvas');
+        let pincel = tela.getContext('2d');
+
+        function drawCircle(x, y, radius) {
+
+            pincel.fillStyle = 'blue';
+            pincel.beginPath();
+            pincel.arc(x, y, radius, 0, 2 * Math.PI);
+            pincel.fill();
+        }
+
+        function clearCanvas() {
+            pincel.clearRect(0, 0, tela.width, tela.height);
+        }
+
+        let xFrame = 20
+        let radiusSize = 10
+        let radiusForm = "growing"
+        let direction = "right";
+        
+        setInterval(() => {
+            
+            if (xFrame == tela.width - 20) {direction = "left"} else if (xFrame == 20) {direction = "right"};
+            if (radiusSize >= 30 ) {radiusForm = "decreasing"} else if (radiusSize === 10 ) {radiusForm = "growing"};
+
+            clearCanvas();
+            drawCircle(xFrame, 40, radiusSize)
+
+            if (radiusForm === "growing") {radiusSize+=0.3} else {radiusSize-=0.3};
+            if (direction === "right") {xFrame++} else {xFrame--};
+
+        }, 10);
+    </script>
+</body>
+</html>
